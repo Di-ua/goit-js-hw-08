@@ -73,17 +73,20 @@ const closeBtnRef = document.querySelector(
   'button[data-action="close-lightbox"]'
 );
 closeBtnRef.addEventListener("click", onCloseModal);
-// const imageRef = event.target;
 
 function onGalleryClick(event) {
   event.preventDefault();
+  const imageRef = event.target;
+
   console.log(imageRef.nodeName);
   if (imageRef.nodeName !== "IMG") {
     return;
   }
+  const btn = event.target;
+
   modalRef.classList.add("is-open");
-  refs.bigImg.src = imageRef.dataset.source;
-  console.log(imageRef.dataset.source);
+  bigImgRef.src = btn.dataset.source;
+  console.log(btn.dataset.source);
 }
 function onCloseModal() {
   modalRef.classList.remove("is-open");
