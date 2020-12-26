@@ -59,7 +59,7 @@ const createItem = (item, array) => {
   return itemRef;
 };
 
-const largeImgRef = document.querySelector(".lightbox__image");
+const bigImgRef = document.querySelector(".lightbox__image");
 
 const renderListItems = (array) => {
   const items = array.map((item) => createItem(item));
@@ -82,7 +82,7 @@ function onGalleryClick(event) {
     return;
   }
   modalRef.classList.add("is-open");
-  refs.largeImg.src = imageRef.dataset.source;
+  refs.bigImg.src = imageRef.dataset.source;
   console.log(imageRef.dataset.source);
 }
 function onCloseModal() {
