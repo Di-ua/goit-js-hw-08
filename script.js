@@ -87,7 +87,10 @@ function onGalleryClick(event) {
   modalRef.classList.add("is-open");
   bigImgRef.src = btn.dataset.source;
   console.log(btn.dataset.source);
+  closeBtnRef.addEventListener("click", onCloseModal);
 }
 function onCloseModal() {
   modalRef.classList.remove("is-open");
+  modalRef.src = "";
+  modalRef.alt = "";
 }
