@@ -39,11 +39,13 @@ const galleryListRef = document.querySelector("ul.js-gallery");
 galleryListRef.addEventListener("click", onGalleryClick);
 
 const createItem = (item, array) => {
+  const itemOverlay = document.createElement("div");
   const itemRef = document.createElement("li");
   const linkRef = document.createElement("a");
   const imgRef = document.createElement("img");
   const { preview, original, description } = item;
 
+  itemOverlay.classList.add("item_overlay");
   itemRef.classList.add("gallery__link");
   linkRef.classList.add("gallery__link");
   linkRef.href = original;
@@ -60,7 +62,7 @@ const createItem = (item, array) => {
 };
 
 const bigImgRef = document.querySelector(".lightbox__image");
-
+//
 const renderListItems = (array) => {
   const items = array.map((item) => createItem(item));
   galleryListRef.append(...items);
@@ -73,6 +75,7 @@ const closeBtnRef = document.querySelector(
   'button[data-action="close-lightbox"]'
 );
 closeBtnRef.addEventListener("click", onCloseModal);
+itemOverlay.addEventListener("click", onBackdropClick);
 
 function onGalleryClick(event) {
   event.preventDefault();
@@ -93,4 +96,9 @@ function onCloseModal() {
   modalRef.classList.remove("is-open");
   modalRef.src = "";
   modalRef.alt = "";
+}
+function onBackdropClick(event) {
+  if (event.target === event.currentTarget) {
+    onCloseModal();
+  }
 }
