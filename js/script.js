@@ -30,12 +30,6 @@ import galleryItems from "./gallery-items.js";
  */
 
 const galleryListRef = document.querySelector("ul.js-gallery");
-// const refs = {
-//   gallery: document.querySelector("ul.js-gallery"),
-//   largeImg: document.querySelector("img.lightbox__image"),
-// };
-
-// refs.gallery.addEventListener("click", onGalleryClick);
 galleryListRef.addEventListener("click", onGalleryClick);
 
 const createItem = (item, array) => {
