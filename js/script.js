@@ -29,17 +29,17 @@ import galleryItems from "./gallery-items.js";
 </li>
  */
 
+
+const itemLightbox = document.querySelector(".lightbox__overlay");
 const galleryListRef = document.querySelector("ul.js-gallery");
 galleryListRef.addEventListener("click", onGalleryClick);
 
 const createItem = (item, array) => {
-  const itemOverlayRef = document.createElement("div");
   const itemRef = document.createElement("li");
   const linkRef = document.createElement("a");
   const imgRef = document.createElement("img");
   const { preview, original, description } = item;
 
-  itemOverlayRef.classList.add("lightbox__overlay");
   itemRef.classList.add("gallery__link");
   linkRef.classList.add("gallery__link");
   linkRef.href = original;
@@ -51,7 +51,6 @@ const createItem = (item, array) => {
   galleryListRef.append(itemRef);
   itemRef.append(linkRef);
   linkRef.append(imgRef);
-  itemOverlayRef.addEventListener("click", onBackdropClick);
 
   return itemRef;
 };
@@ -84,13 +83,17 @@ function onGalleryClick(event) {
   modalRef.classList.add("is-open");
   bigImgRef.src = btn.dataset.source;
   console.log(btn.dataset.source);
+
+  itemLightbox.addEventListener("click", onBackdropClick);
   closeBtnRef.addEventListener("click", onCloseModal);
 }
+
 function onCloseModal() {
   modalRef.classList.remove("is-open");
   modalRef.src = "";
   modalRef.alt = "";
 }
+
 function onBackdropClick(event) {
   if (event.target === event.currentTarget) {
     onCloseModal();
